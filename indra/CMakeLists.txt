@@ -17,8 +17,8 @@ cmake_minimum_required(VERSION 2.6.2 FATAL_ERROR)
 # can be removed when we use full paths for all libraries.
 cmake_policy(SET CMP0003 OLD)
 
-set(ROOT_PROJECT_NAME "Astra" CACHE STRING
-    "The root project/makefile/solution name. Defaults to Astra.")
+set(ROOT_PROJECT_NAME "Astra64" CACHE STRING
+    "The root project/makefile/solution name. Defaults to Astra64.")
 project(${ROOT_PROJECT_NAME})
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
@@ -31,8 +31,8 @@ include(Versions)
 include(UnixInstall)
 
 if (NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE ReleaseSSE2 CACHE STRING
-      "Build type.  One of: Debug Release ReleaseSSE2 RelWithDebInfo" FORCE)
+  set(CMAKE_BUILD_TYPE Release CACHE STRING
+      "Build type.  One of: Debug Release RelWithDebInfo" FORCE)
 endif (NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
 
 # Create a 'prepare' target in which to perform setup actions.  This
