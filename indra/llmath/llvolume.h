@@ -43,7 +43,12 @@ class LLPath;
 
 template <class T> class LLOctreeNode;
 
+#if !defined(_WIN64)
 class LLVector4a;
+#else
+#define LLVector4a LLVector4
+#endif
+
 class LLVolumeFace;
 class LLVolume;
 class LLVolumeTriangle;

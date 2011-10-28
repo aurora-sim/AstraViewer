@@ -20,6 +20,7 @@ if(ARTWORK_EXISTS)
     install(DIRECTORY ${ARTWORK_DIR}/res
                       ${ARTWORK_DIR}/skins
                       ${ARTWORK_DIR}/app_settings
+                      ${ARTWORK_DIR}/local_assets
             DESTINATION ${APP_SHARE_DIR}
             PATTERN ".svn" EXCLUDE
             )

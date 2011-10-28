@@ -37,10 +37,10 @@ if (WINDOWS)
       "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} /Od /Zi /MD /MP /arch:SSE2"
       CACHE STRING "C++ compiler release-with-debug options" FORCE)
   set(CMAKE_CXX_FLAGS_RELEASE
-      "${CMAKE_CXX_FLAGS_RELEASE} ${LL_CXX_FLAGS} /O2 /Zi /MD /MP /arch:SSE /fp:fast"
+      "${CMAKE_CXX_FLAGS_RELEASE} ${LL_CXX_FLAGS} /O2 /Zi /MD /MP /fp:fast"
       CACHE STRING "C++ compiler release options" FORCE)
   set(CMAKE_C_FLAGS_RELEASE
-      "${CMAKE_C_FLAGS_RELEASE} ${LL_C_FLAGS} /O2 /MD /MP /arch:SSE /fp:fast"
+      "${CMAKE_C_FLAGS_RELEASE} ${LL_C_FLAGS} /O2 /MD /MP /fp:fast"
       CACHE STRING "C compiler release options" FORCE)
   set(CMAKE_CXX_FLAGS_RELEASESSE2
       "${CMAKE_CXX_FLAGS_RELEASESSE2} ${LL_CXX_FLAGS} /O2 /Ob2 /Ot /GT /MD /MP /arch:SSE2 /fp:fast"

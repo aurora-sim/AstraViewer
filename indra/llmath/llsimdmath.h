@@ -27,6 +27,10 @@
 #ifndef	LL_SIMD_MATH_H
 #define	LL_SIMD_MATH_H
 
+#if defined(_WIN64)
+#error "This file is not suitable for x64 build, please switch the build to Win32"
+#endif
+
 #ifndef LLMATH_H
 #error "Please include llmath.h before this file."
 #endif
@@ -56,7 +60,7 @@ template <typename T> T* LL_NEXT_ALIGNED_ADDRESS_64(T* address)
 #define			LL_ALIGN_PREFIX(x)
 #define			LL_ALIGN_POSTFIX(x)		__attribute__((aligned(x)))
 
-#elif LL_WINDOWS
+#elif LL_WINDOWS && !defined(_WIN64)
 
 #define			LL_ALIGN_PREFIX(x)		__declspec(align(x))
 #define			LL_ALIGN_POSTFIX(x)
@@ -65,8 +69,11 @@ template <typename T> T* LL_NEXT_ALIGNED_ADDRESS_64(T* address)
 #error "LL_ALIGN_PREFIX and LL_ALIGN_POSTFIX undefined"
 #endif
 
+#if defined(LL_WINDOWS) && !defined(_WIN64)
 #define LL_ALIGN_16(var) LL_ALIGN_PREFIX(16) var LL_ALIGN_POSTFIX(16)
-
+#else
+#define LL_ALIGN_16(var) LL_ALIGN_PREFIX(16) var
+#endif
 
 
 #include <xmmintrin.h>

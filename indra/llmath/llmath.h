@@ -146,7 +146,7 @@ inline F64 llabs(const F64 a)
 
 inline S32 lltrunc( F32 f )
 {
-#if LL_WINDOWS && !defined( __INTEL_COMPILER )
+#if LL_WINDOWS && !defined( __INTEL_COMPILER ) && !defined(_WIN64)
 		// Avoids changing the floating point control word.
 		// Add or subtract 0.5 - epsilon and then round
 		const static U32 zpfp[] = { 0xBEFFFFFF, 0x3EFFFFFF };
@@ -172,7 +172,7 @@ inline S32 lltrunc( F64 f )
 
 inline S32 llfloor( F32 f )
 {
-#if LL_WINDOWS && !defined( __INTEL_COMPILER )
+#if LL_WINDOWS && !defined( __INTEL_COMPILER ) && !defined(_WIN64)
 		// Avoids changing the floating point control word.
 		// Accurate (unlike Stereopsis version) for all values between S32_MIN and S32_MAX and slightly faster than Stereopsis version.
 		// Add -(0.5 - epsilon) and then round
@@ -542,6 +542,8 @@ inline void ll_remove_outliers(std::vector<VEC_TYPE>& data, F32 k)
 	}
 }
 
-// Include simd math header
+// Include simd math header, only if on a none 64-bit cpu and the os is not Windows.
+#if defined(LL_WINDOWS) && !defined(_WIN64)
 #include "llsimdmath.h"
+#endif
 #endif

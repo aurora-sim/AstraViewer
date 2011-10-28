@@ -88,6 +88,12 @@ Most compilers implement their own version of this keyword ...
 
 /* MSVC and Borland C do not have lrintf */
 #if defined(_MSC_VER) || defined(__BORLANDC__)
+#if defined(_WIN64)
+static INLINE long lrintf(float f){
+	long l = (long)(f+0.5);
+	return(l);
+}
+#else
 static INLINE long lrintf(float f){
 	int i;
 
@@ -98,6 +104,7 @@ static INLINE long lrintf(float f){
 
 	return i;
 }
+#endif
 #endif
 
 #include "j2k_lib.h"

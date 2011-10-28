@@ -33,6 +33,7 @@ class LLRotation;
 #include <assert.h>
 #include "llpreprocessor.h"
 
+#if	!defined(_WIN64)
 ///////////////////////////////////
 // FIRST TIME USERS PLEASE READ
 //////////////////////////////////
@@ -320,5 +321,14 @@ inline void update_min_max(LLVector4a& min, LLVector4a& max, const LLVector4a& p
 	min.setMin(min, p);
 	max.setMax(max, p);
 }
+
+#else
+
+//#include "llvector4.h"
+
+#define LLVector4a LLVector4
+
+#endif
+
 
 #endif

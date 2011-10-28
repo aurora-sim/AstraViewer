@@ -69,6 +69,10 @@
 #include <functional>
 #include <map>
 #include <set>
+#include <list>
+#include <map>
+#include <vector>
+#include <string>
 
 #ifdef LL_WINDOWS
 #pragma warning (3 : 4702) // we like level 3, not 4

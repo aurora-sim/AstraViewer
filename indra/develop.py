@@ -41,6 +41,7 @@ import shutil
 import socket
 import sys
 import commands
+import platform
 
 class CommandError(Exception):
     pass
@@ -68,19 +69,30 @@ def quote(opts):
     return '"' + '" "'.join([ opt.replace('"', '') for opt in opts ]) + '"'
 
 class PlatformSetup(object):
+    is64bit = platform.architecture()[0]=="64bit"
     generator = None
     build_types = {}
-    for t in ('Debug', 'Release', 'ReleaseSSE2', 'RelWithDebInfo'):
-        build_types[t.lower()] = t
 
-    build_type = build_types['releasesse2']
+    if is64bit:
+        for t in ('Debug', 'Release', 'RelWithDebInfo'):
+            build_types[t.lower()] = t
+
+        build_type = build_types['release']
+        word_size = 64
+    else:
+        for t in ('Debug', 'Release', 'ReleaseSSE2', 'RelWithDebInfo'):
+            build_types[t.lower()] = t
+
+        build_type = build_types['releasesse2']
+        word_size = 32
+
     standalone = 'OFF'
     unattended = 'OFF'
     universal = 'OFF'
     project_name = 'Astra'
     distcc = True
     cmake_opts = []
-    word_size = 32
+#    word_size = 32
     opensim_rules = 'OFF' #whether or not to use rules fit for opensim
     using_express = False
 
@@ -96,7 +108,7 @@ class PlatformSetup(object):
     def arch(self):
         '''Return the CPU architecture.'''
 
-        return None
+        return platform.architecture()[0]
 
     def platform(self):
         '''Return a stringified two-tuple of the OS name and CPU
@@ -485,6 +497,12 @@ class WindowsSetup(PlatformSetup):
     gens['vs2008'] = gens['vc90']
     gens['vs2010'] = gens['vc100']
 
+    is64bit = platform.architecture()[0]=="64bit"
+    if is64bit:
+        print 'Windows 64-bit'
+    else:
+        print 'Windows 32-bit'
+
     search_path = r'C:\windows'
     exe_suffixes = ('.exe', '.bat', '.com')
 
@@ -526,7 +544,10 @@ class WindowsSetup(PlatformSetup):
     generator = property(_get_generator, _set_generator)
 
     def os(self):
-        return 'win32'
+        if is64bit:
+            return 'Win64'
+        else:
+            return 'win32'
 
     def build_dirs(self):
         return ['build-' + self.generator]
@@ -631,6 +652,9 @@ class WindowsSetup(PlatformSetup):
         if self.incredibuild:
             config = self.build_type
             if self.gens[self.generator]['ver'] in [ r'8.0', r'9.0' ]:
+              if is64bit:
+                config = '\"%s|x64\"' % config
+              else:
                 config = '\"%s|Win32\"' % config
 
             return "buildconsole %s.sln /build %s" % (self.project_name, config)
