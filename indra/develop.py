@@ -711,7 +711,7 @@ class WindowsSetup(PlatformSetup):
                           ' --solution ' +
                           os.path.join(build_dir,'Astra.sln') +
                           ' --config ' + self.build_type +
-                          ' --startup astraviewer')
+                          ' --startup AstraViewer64')
             print 'Running %r in %r' % (vstool_cmd, getcwd())
             self.run(vstool_cmd)        
             print >> open(stamp, 'w'), self.build_type

@@ -172,14 +172,14 @@ class ViewerManifest(LLManifest):
 
 class WindowsManifest(ViewerManifest):
     def final_exe(self):
-        return 'AstraViewer.exe'
+        return 'AstraViewer64.exe'
 
 
     def construct(self):
         super(WindowsManifest, self).construct()
         # the final exe is complicated because we're not sure where it's coming from,
         # nor do we have a fixed name for the executable
-        self.path(src='%s/astraviewer.exe' % self.args['configuration'], dst=self.final_exe())
+        self.path(src='%s/AstraViewer64.exe' % self.args['configuration'], dst=self.final_exe())
 
         # Plugin host application
         self.path(os.path.join(os.pardir,
@@ -309,7 +309,7 @@ class WindowsManifest(ViewerManifest):
             #~ self.end_prefix()
 
         # The config file name needs to match the exe's name.
-        #~ self.path(src="%s/astraviewer.exe.config" % self.args['configuration'], dst=self.final_exe() + ".config")
+        #~ self.path(src="%s/AstraViewer64.exe.config" % self.args['configuration'], dst=self.final_exe() + ".config")
 
         # Vivox runtimes
         if self.prefix(src="vivox-runtime/i686-win32", dst=""):
@@ -395,7 +395,7 @@ class WindowsManifest(ViewerManifest):
         OutFile "%(installer_file)s"
         !define VIEWERNAME "Astra Viewer"
         !define INSTFLAGS "%(flags)s"
-        !define INSTNAME   "AstraViewer"
+        !define INSTNAME   "AstraViewer64"
         !define SHORTCUT   "Astra Viewer"
         !define URLNAME   "secondlife"
         !define INSTALL_ICON "install_icon_Astra.ico"
@@ -696,7 +696,7 @@ class LinuxManifest(ViewerManifest):
             self.path("secondlife-stripped","bin/"+self.binary_name())
             self.path("../linux_crash_logger/linux-crash-logger-stripped","linux-crash-logger.bin")
         else:
-            self.path("astraviewer","bin/"+self.binary_name())
+            self.path("AstraViewer64","bin/"+self.binary_name())
             self.path("../linux_crash_logger/linux-crash-logger","linux-crash-logger.bin")
 
         self.path("linux_tools/launch_url.sh","launch_url.sh")
