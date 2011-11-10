@@ -428,7 +428,6 @@ class WindowsManifest(ViewerManifest):
           import platform as platform
           arch = platform.architecture()
           if arch[0]=="64bit":
-            print "Window 64-bit"
             try:
               NSIS_path = os.environ['ProgramFile(x86)'] + '\\NSIS\\Unicode\\makensis.exe'
               self.run_command('"' + proper_windows_path(NSIS_path) + '" ' + self.dst_path_of(tempfile))
@@ -436,7 +435,6 @@ class WindowsManifest(ViewerManifest):
               NSIS_path = os.environ['ProgramFiles(x86)'] + '\\NSIS\\Unicode\\makensis.exe'
               self.run_command('"' + proper_windows_path(NSIS_path) + '" ' + self.dst_path_of(tempfile))
           else:
-            print "Windows 32-bit"
             try:
               NSIS_path = os.environ['ProgramFiles'] + '\\NSIS\\Unicode\\makensis.exe'
               self.run_command('"' + proper_windows_path(NSIS_path) + '" ' + self.dst_path_of(tempfile))
