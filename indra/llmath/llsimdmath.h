@@ -27,7 +27,7 @@
 #ifndef	LL_SIMD_MATH_H
 #define	LL_SIMD_MATH_H
 
-#if defined(_WIN64)
+#if !defined(_WIN64)
 #error "This file is not suitable for x64 build, please switch the build to Win32"
 #endif
 

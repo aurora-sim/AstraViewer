@@ -33,7 +33,7 @@ class LLRotation;
 #include <assert.h>
 #include "llpreprocessor.h"
 
-#if	!defined(_WIN64)
+#if	!defined(_M_X64)
 ///////////////////////////////////
 // FIRST TIME USERS PLEASE READ
 //////////////////////////////////
