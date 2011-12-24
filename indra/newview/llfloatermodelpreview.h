@@ -282,10 +282,16 @@ protected:
 
 	LLSD mModelPhysicsFee;
 
+	static void onToggleCalculateButton( LLUICtrl *ctrl, void *userdata );
+
+	static void onSetPreviewLODClick( void *userdata );
+
 private:
-	void onClickCalculateBtn();
-	void toggleCalculateButton();
+	static	void	onClickCalculateBtn(void *userdata=NULL);
+	void	toggleCalculateButton();
 	static void assert_main_thread();
+
+	LLModelPreview *getModelPreview() { return(mModelPreview); };
 
 	// Toggles between "Calculate weights & fee" and "Upload" buttons.
 	void toggleCalculateButton(bool visible);

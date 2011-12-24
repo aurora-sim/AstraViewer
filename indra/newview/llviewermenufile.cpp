@@ -89,6 +89,8 @@
 
 //#include "importtracker.h"
 
+#include "llfloatermodelpreview.h"
+
 typedef LLMemberListener<LLView> view_listener_t;
 
 
@@ -111,6 +113,35 @@ class LLFileEnableUpload : public view_listener_t
 		return true;
 	}
 };
+
+#if MESH_IMPORT
+class LLFileUploadModel : public view_listener_t
+{
+	bool handleEvent(LLPointer<LLEvent> event, const LLSD& userdata)
+	{
+		LLFloaterModelPreview* fmp = new LLFloaterModelPreview("Model Preview");
+		if (fmp)
+		{
+			fmp->loadModel(3);
+		}
+		return TRUE;
+	}
+};
+
+class LLFileEnableUploadModel : public view_listener_t
+{
+	bool handleEvent(LLPointer<LLEvent> event, const LLSD& userdata)
+	{
+		bool new_value = gMeshRepo.meshUploadEnabled() &&
+#if !LL_LINUX
+						 gSavedSettings.getBOOL("MeshUploadEnable") &&
+#endif
+						 LLFloaterModelPreview::sInstance == NULL;
+ 		gMenuHolder->findControl(userdata["control"].asString())->setValue(new_value);
+ 		return true;
+ 	}
+};
+#endif
 
 //============================================================================
 
@@ -1280,6 +1311,10 @@ void init_menu_file()
 	(new LLFileLogOut())->registerListener(gMenuHolder, "File.LogOut");
 	(new LLFileEnableUpload())->registerListener(gMenuHolder, "File.EnableUpload");
 	(new LLFileEnableSaveAs())->registerListener(gMenuHolder, "File.EnableSaveAs");
+#if MESH_IMPORT
+	(new LLFileUploadModel())->registerListener(gMenuHolder, "File.UploadModel");
+	(new LLFileEnableUploadModel())->registerListener(gMenuHolder, "File.EnableUploadModel");
+#endif
 }
 
 // <edit>

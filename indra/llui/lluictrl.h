@@ -123,7 +123,7 @@ public:
 	void*			getCallbackUserData() const								{ return mCallbackUserData; }
 	void			setCallbackUserData( void* data )						{ mCallbackUserData = data; }
 	
-	void			setCommitCallback( void (*cb)(LLUICtrl*, void*) )		{ mCommitCallback = cb; }
+	void			setCommitCallback( void (*cb)(LLUICtrl*, void *) )		{ mCommitCallback = cb; }
 	void			setValidateBeforeCommit( BOOL(*cb)(LLUICtrl*, void*) )	{ mValidateCallback = cb; }
 	void			setLostTopCallback( void (*cb)(LLUICtrl*, void*) )		{ mLostTopCallback = cb; }
 	

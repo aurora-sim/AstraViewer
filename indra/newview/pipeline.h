@@ -252,6 +252,7 @@ public:
 	void enableLightsStatic();
 	void enableLightsDynamic();
 	void enableLightsAvatar();
+	void enableLightsPreview();
 	void enableLightsAvatarEdit(const LLColor4& color);
 	void enableLightsFullbright(const LLColor4& color);
 	void disableLights();

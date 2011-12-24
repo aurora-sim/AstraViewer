@@ -4979,6 +4979,63 @@ void LLPipeline::enableLightsAvatar()
 	enableLights(mask);
 }
 
+void LLPipeline::enableLightsPreview()
+{
+	disableLights();
+
+	glEnable(GL_LIGHTING);
+	LLColor4 ambient = gSavedSettings.getColor4("PreviewAmbientColor");
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT,ambient.mV);
+
+	LLColor4 diffuse0 = gSavedSettings.getColor4("PreviewDiffuse0");
+	LLColor4 specular0 = gSavedSettings.getColor4("PreviewSpecular0");
+	LLColor4 diffuse1 = gSavedSettings.getColor4("PreviewDiffuse1");
+	LLColor4 specular1 = gSavedSettings.getColor4("PreviewSpecular1");
+	LLColor4 diffuse2 = gSavedSettings.getColor4("PreviewDiffuse2");
+	LLColor4 specular2 = gSavedSettings.getColor4("PreviewSpecular2");
+
+	LLVector3 dir0 = gSavedSettings.getVector3("PreviewDirection0");
+	LLVector3 dir1 = gSavedSettings.getVector3("PreviewDirection1");
+	LLVector3 dir2 = gSavedSettings.getVector3("PreviewDirection2");
+
+	dir0.normVec();
+	dir1.normVec();
+	dir2.normVec();
+
+	LLVector4 light_pos(dir0, 0.0f);
+
+	LLLightState* light = gGL.getLight(0);
+
+	light->enable();
+	light->setPosition(light_pos);
+	light->setDiffuse(diffuse0);
+	light->setAmbient(LLColor4::black);
+	light->setSpecular(specular0);
+	light->setSpotExponent(0.f);
+	light->setSpotCutoff(180.f);
+
+	light_pos = LLVector4(dir1, 0.f);
+
+	light = gGL.getLight(1);
+	light->enable();
+	light->setPosition(light_pos);
+	light->setDiffuse(diffuse1);
+	light->setAmbient(LLColor4::black);
+	light->setSpecular(specular1);
+	light->setSpotExponent(0.f);
+	light->setSpotCutoff(180.f);
+
+	light_pos = LLVector4(dir2, 0.f);
+	light = gGL.getLight(2);
+	light->enable();
+	light->setPosition(light_pos);
+	light->setDiffuse(diffuse2);
+	light->setAmbient(LLColor4::black);
+	light->setSpecular(specular2);
+	light->setSpotExponent(0.f);
+	light->setSpotCutoff(180.f);
+}
+
 void LLPipeline::enableLightsAvatarEdit(const LLColor4& color)
 {
 	U32 mask = 0x2002; // Avatar backlight only, set ambient
