@@ -58,6 +58,9 @@ if (WINDOWS)
       /DLL_WINDOWS=1
       /DUNICODE
       /D_UNICODE 
+      /DMESH_UPLOAD=1
+      /DMESH_IMPORT=1
+      /DMESH_IMPORT_UI=1
       /GS
       /TP
       /c
