@@ -439,7 +439,7 @@ BOOL LLFloaterModelPreview::postBuild()
 //	mViewOptionMenu = LLUICtrlFactory::getInstance()->createFromFile<LLToggleableMenu>("menu_model_import_gear_default.xml", gMenuHolder, LLViewerMenuHolderGL::child_registry_t::instance());
 //	mViewOptionMenuButton->setMenu(mViewOptionMenu, LLMenuButton::MP_BOTTOM_LEFT);
 
-//	initDecompControls();
+	initDecompControls();
 
 	LLView* preview_panel = getChild<LLView>("preview_panel");
 
