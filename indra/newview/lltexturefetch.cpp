@@ -1304,6 +1304,8 @@ bool LLTextureFetchWorker::doWork(S32 param)
 						return true ; //abort.
 					}
 				}
+				resetFormattedData();
+				cur_size = 0;
 			}
 			mRequestedSize = mDesiredSize;
 			mRequestedDiscard = mDesiredDiscard;
