@@ -441,7 +441,7 @@ void LLWorldMapView::draw()
 		
 		if (!mesg.empty())
 		{
-			static LLUICachedControl<bool> show_coords("MapShowGridCoordinates");
+			static const LLCachedControl<bool> show_coords("MapShowGridCoordinates");
 			
 			if(show_coords)
 			{
