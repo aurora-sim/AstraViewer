@@ -175,7 +175,4 @@
 	     height="16" increment="0.2" initial_val="48.5029" label="Zoom" left="-230"
 	     max_val="0" min_val="-8" mouse_opaque="true" name="zoom slider"
 	     show_text="false" value="48.5029" width="222" />
-	<check_box control_name="MapShowGridCoordinates" follows="top|right"
-	     font="SansSerifSmall" height="16" initial_value="true" label="Show Grid Coordinates"
-	     left_delta="20" mouse_opaque="true" name="show_grid_coordinates" width="22" />
 </floater>
