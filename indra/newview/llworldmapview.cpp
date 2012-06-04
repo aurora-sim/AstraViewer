@@ -441,17 +441,17 @@ void LLWorldMapView::draw()
 		
 		if (!mesg.empty())
 		{
-//			static const LLCachedControl<bool> show_coords("MapShowGridCoordinates");
-			
-//			if(show_coords)
-//			{
+			//static const LLCachedControl<bool> show_coords("MapShowGridCoordinates");
+			BOOL show_coords = gSavedSettings.getBOOL("MapShowGridCoordinates");
+			if(show_coords)
+			{
 				LLVector3d origin = info->getGlobalOrigin();
 				std::ostringstream coords;
 				coords	<< " [" 
 				<< origin.mdV[VX] / REGION_WIDTH_METERS << ", "
 				<< origin.mdV[VY] / REGION_WIDTH_METERS << "]";
 				mesg.append(coords.str());
-//			}
+			}
 			
 			font->renderUTF8(
 					mesg, 0,
