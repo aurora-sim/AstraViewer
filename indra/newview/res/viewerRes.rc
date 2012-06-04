@@ -156,12 +156,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Astra Dev Team"
             VALUE "FileDescription", "Astra Viewer"
-            VALUE "FileVersion", "1.5.0.0"
+            VALUE "FileVersion", "1.6.4.1"
             VALUE "InternalName", "Second Life"
-            VALUE "LegalCopyright", "Copyright © 2001-2010, Linden Research, Inc., Copyright 2011 Astra Dev Team"
+            VALUE "LegalCopyright", "Copyright © 2001-2010, Linden Research, Inc., Copyright 2011-2012 Astra Dev Team"
             VALUE "OriginalFilename", "Astra.exe"
             VALUE "ProductName", "Astra Viewer"
-            VALUE "ProductVersion", "1.5.0.0"
+            VALUE "ProductVersion", "1.6.4.1"
         END
     END
     BLOCK "VarFileInfo"
